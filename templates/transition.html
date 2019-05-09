@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>5s后返回首页</title>
+</head>
+<body>
+    <h2>基于Django的信息采集系统</h2>
+   
+    {% if message == "OK"  %}
+        <h1>数据采集完成，感谢配合！</h1>
+        <a href='http://123.56.16.170:8081'><span id="begin">5</span>秒后跳转</a>
+    {% else %}
+         <h1>{{ message }}</h1>
+         <h1>输入错误，请重新填写！</h1>
+         <a href=window.history.back()><span id="begin">5</span>秒后跳转</a>
+    {% endif %}
+    
+    <script>
+        var t=5;
+        var timer=setInterval(time,1000);
+        var spans=document.getElementById("begin");
+        function time(){
+            t--;
+            spans.innerHTML='<span>'+t+'</span>';
+            if (t<=0){
+                clearInterval(timer);
+                {% if message == "OK"  %}
+                     return window.location.href='http://123.56.16.170:8081';
+                {% else %}
+                      return window.location.href=window.history.back();
+                {% endif %}
+            }console.log(t);
+        }
+    </script>
+
+</body>
+</html>
+
+<!--!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>5s后返回首页</title>
+</head>
+<body>
+    <h2>基于Django的信息采集系统</h2>
+    <h1>{{ message }}</h1>
+    <p><a id="showtime">5s后回到主页</a>　<a href=window.history.back()>返回</a></p>
+    <script type="text/javascript">  
+        var flag = 5;
+        var timer = setInterval(function(){
+        document.getElementById("showtime").innerHTML=flag+"秒后自动跳转到主页";
+        flag=flag-1;
+        if(flag<=0){
+            window.location.href="123.56.16.170:8081";
+            }
+        },1000);
+    </script>
+</body>
+</html-->
