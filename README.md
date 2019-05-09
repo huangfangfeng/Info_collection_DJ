@@ -1,0 +1,2 @@
+# Info_collection_DJ
+基于Django开发的信息采集系统
